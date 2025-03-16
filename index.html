@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LetStore - Интернет-магазин</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        nav {
+            margin: 20px 0;
+        }
+        nav a {
+            margin: 0 15px;
+            color: #fff;
+            text-decoration: none;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .product {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            background: #fff;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .product:hover {
+            transform: scale(1.05);
+        }
+        .product img {
+            max-width: 100%;
+            height: auto;
+        }
+        .button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #218838;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .profile-container {
+            margin: 20px 0;
+        }
+        .form-group {
+            margin: 10px 0;
+        }
+        input {
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .cart {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>LetStore</h1>
+    <nav>
+        <a href="#">Главная</a>
+        <a href="#">Каталог</a>
+        <a href="#">Контакты</a>
+        <a href="#" id="profileBtn">Профиль</a>
+        <a href="#" id="cartBtn">Корзина</a>
+        <a href="#" id="loginBtn">Вход</a>
+    </nav>
+</header>
+
+<div class="container">
+    <h2>Наши товары</h2>
+    
+    <div class="product">
+        <img src="product1.jpg" alt="Товар 1">
+        <h3>Товар 1</h3>
+        <p>Цена: 1000 руб.</p>
+        <button class="button">Добавить в корзину</button>
+    </div>
+    
+    <div class="product">
+        <img src="product2.jpg" alt="Товар 2">
+        <h3>Товар 2</h3>
+        <p>Цена: 2000 руб.</p>
+        <button class="button">Добавить в корзину</button>
+    </div>
+    
+    <div class="product">
+        <img src=&quot;product3.jpg" alt="Товар 3">
+        <h3>Товар 3</h3>
+        <p>Цена: 3000 руб.</p>
+        <button class="button">Добавить в корзину</button>
+    </div>
+
+    <div class="profile-container" id="profile" style="display:none;">
+        <h2>Вход в систему</h2>
+        <div class="form-group">
+            <input type="text" placeholder="Логин">
+        </div>
+        <div class="form-group">
+            <input type="password" placeholder="Пароль">
+        </div>
+        <button class="button">Войти</button>
+    </div>
+
+    <div class="cart" id="cart" style="display:none;">
+        <h2>Корзина</h2>
+        <p>Товары в вашей корзине: <span id="cartCount">0</span></p>
+        <p>Итоговая сумма: <span id="totalPrice">0</span> руб.</p>
+        <button class="button">Оформить заказ</button>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2023 LetStore. Все права защищены.</p>
+</footer>
+
+<script>
+    let cartCount = 0;
+    let totalPrice = 0;
+
+    document.querySelectorAll('.product button').forEach(button => {
+        button.addEventListener('click', () => {
+            cartCount++;
+            totalPrice += parseInt(button.parentElement.querySelector('p').innerText.replace('Цена: ', '').replace(' руб.', ''));
+            document.getElementById('cartCount').innerText = cartCount;
+            document.getElementById('totalPrice').innerText = totalPrice;
+            alert('Товар добавлен в корзину!');
+        });
+    });
+
+    document.getElementById('profileBtn').onclick = () => {
+        document.getElementById('profile').style.display = 'block';
+        document.getElementById('cart').style.display = 'none';
+    };
+
+    document.getElementById('cartBtn').onclick = () => {
+        document.getElementById('cart').style.display = 'block';
+        document.getElementById('profile').style.display = 'none';
+    };
+
+    document.getElementById('loginBtn').onclick = () => {
+        alert('Вход в систему!');
+    };
+</script>
+
+</body>
+</html>
+
+
